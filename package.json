@@ -23,6 +23,9 @@
   ],
   "author": "GyeongHoKim",
   "amdName": "lucide-lit",
+  "workspaces": [
+    "demo"
+  ],
   "main": "dist/cjs/lucide-lit.js",
   "module": "dist/esm/lucide-lit.js",
   "exports": {
@@ -47,6 +50,9 @@
     "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -rf ./src/icons/index.ts",
     "build:icons": "node scripts/generate-icons.mjs",
     "build:bundles": "rollup -c ./rollup.config.mjs",
+    "demo:dev": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run dev",
+    "demo:build": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run build",
+    "demo:preview": "npm --workspace @gyeonghokim/lucide-lit-demo run preview",
     "test": "npm run build:icons && web-test-runner",
     "test:watch": "npm run build:icons && web-test-runner --watch",
     "test:update-fixtures": "npm run build:icons && web-test-runner --config web-test-runner.record.mjs --static-logging 2>&1 | node ./scripts/write-expected-shadow.mjs",
@@ -72,7 +78,7 @@
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-playwright": "^0.11.1",
     "husky": "^9.1.7",
-    "lit": "^3.3.1",
+    "lit": "^3.3.3",
     "lucide": "^1.16.0",
     "playwright": "^1.53.0",
     "rollup": "^4.59.0",
