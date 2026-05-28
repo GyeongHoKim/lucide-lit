@@ -23,6 +23,9 @@
   ],
   "author": "GyeongHoKim",
   "amdName": "lucide-lit",
+  "workspaces": [
+    "demo"
+  ],
   "main": "dist/cjs/lucide-lit.js",
   "module": "dist/esm/lucide-lit.js",
   "exports": {
@@ -36,6 +39,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "sideEffects": false,
   "scripts": {
     "prepare": "husky",
@@ -43,10 +50,13 @@
     "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -rf ./src/icons/index.ts",
     "build:icons": "node scripts/generate-icons.mjs",
     "build:bundles": "rollup -c ./rollup.config.mjs",
+    "demo:dev": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run dev",
+    "demo:build": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run build",
+    "demo:preview": "npm --workspace @gyeonghokim/lucide-lit-demo run preview",
     "test": "npm run build:icons && web-test-runner",
     "test:watch": "npm run build:icons && web-test-runner --watch",
     "test:update-fixtures": "npm run build:icons && web-test-runner --config web-test-runner.record.mjs --static-logging 2>&1 | node ./scripts/write-expected-shadow.mjs",
-    "version": "npm version --git-tag-version=false",
+    "release": "semantic-release",
     "lint": "biome lint ./src",
     "lint:fix": "biome lint --write ./src",
     "format": "biome format ./src",
@@ -61,16 +71,19 @@
     "@lucide/build-icons": "^1.1.0",
     "@lucide/rollup-plugins": "^1.0.0",
     "@open-wc/testing": "^4.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@types/mocha": "^10.0.10",
     "@web/dev-server-esbuild": "^1.0.5",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-playwright": "^0.11.1",
     "husky": "^9.1.7",
-    "lit": "^3.3.1",
+    "lit": "^3.3.3",
     "lucide": "^1.16.0",
     "playwright": "^1.53.0",
     "rollup": "^4.59.0",
     "rollup-plugin-dts": "^6.2.3",
+    "semantic-release": "^25.0.3",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {

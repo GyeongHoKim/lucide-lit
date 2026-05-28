@@ -6,6 +6,8 @@ Each icon is registered as a web component, so you can use Lucide icons in Lit
 templates as regular HTML tags such as `<lucide-camera>`,
 `<lucide-circle-alert>`, and `<lucide-search>`.
 
+Try the interactive demo: https://gyeonghokim.github.io/lucide-lit/
+
 ## Installation
 
 ```sh
