@@ -60,7 +60,7 @@ class LucideLitDemo extends LitElement {
   declare absoluteStrokeWidth: boolean;
 
   @state()
-  private activeIcon = ICONS[0];
+  private activeIcon: (typeof ICONS)[number] = ICONS[0];
 
   @state()
   private activeCodeSample = '';
