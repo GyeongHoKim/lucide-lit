@@ -43,7 +43,6 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "sideEffects": false,
   "scripts": {
     "prepare": "husky",
     "build": "npm run clean && npm run build:icons && npm run build:bundles",
