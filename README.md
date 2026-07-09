@@ -30,15 +30,12 @@ bun add @gyeonghokim/lucide-lit lit
 
 ## Quick start
 
-Import the icons you want to use. Importing an icon registers its custom
-element.
+Import the icons you want to use as **side-effect imports**. Importing the icon
+module registers its custom element — no `void` workarounds needed.
 
 ```ts
 import { LitElement, html } from 'lit';
-import { Camera } from '@gyeonghokim/lucide-lit';
-
-// Keep the imported icon referenced so bundlers and linters do not remove it.
-void Camera;
+import '@gyeonghokim/lucide-lit/icons/camera';
 
 class UploadButton extends LitElement {
   render() {
@@ -58,9 +55,7 @@ You can also import an icon once in an application entry file and use its tag in
 any Lit template loaded after that import.
 
 ```ts
-import { Search } from '@gyeonghokim/lucide-lit';
-
-void Search;
+import '@gyeonghokim/lucide-lit/icons/search';
 ```
 
 ```html
@@ -174,22 +169,28 @@ content, the icon defaults to `aria-hidden="true"`.
 
 ## Bundle behavior
 
-The package currently exposes a single public entry point:
+Prefer individual side-effect imports for each icon your component renders.
+Each import registers only that icon's custom element, keeping your bundle
+small:
 
 ```ts
-import { Camera, Search } from '@gyeonghokim/lucide-lit';
+import '@gyeonghokim/lucide-lit/icons/camera';
+import '@gyeonghokim/lucide-lit/icons/search';
 ```
 
-Prefer named imports for the icons your component actually renders. Avoid
-namespace imports unless you intentionally need to reference many icons:
+If you need to reference the icon class directly (for TypeScript types, or
+to pass it as a value), use a named import from the main entry point:
+
+```ts
+import { Camera, type Camera as CameraType } from '@gyeonghokim/lucide-lit';
+```
+
+Avoid namespace imports unless you intentionally need to reference many icons
+or are using a bundler that does not support tree-shaking:
 
 ```ts
 import * as lucideIcons from '@gyeonghokim/lucide-lit';
 ```
-
-If an imported icon is only used through its custom element tag, keep the import
-referenced with `void IconName` as shown in the quick start. That makes the
-registration side effect explicit to TypeScript, linters, and bundlers.
 
 ## Custom icons
 
