@@ -33,6 +33,9 @@
       "types": "./dist/lucide-lit.d.ts",
       "import": "./dist/esm/lucide-lit.js",
       "require": "./dist/cjs/lucide-lit.js"
+    },
+    "./icons/*": {
+      "import": "./dist/esm/icons/*.js"
     }
   },
   "typings": "dist/lucide-lit.d.ts",
@@ -87,5 +90,9 @@
   },
   "peerDependencies": {
     "lit": "^3.0.0"
-  }
+  },
+  "sideEffects": [
+    "./dist/esm/icons/*.js",
+    "./dist/esm/createLucideIcon.js"
+  ]
 }
