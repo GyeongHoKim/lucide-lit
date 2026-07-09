@@ -1,15 +1,13 @@
-import {
-  Camera,
-  CircleAlert,
-  Download,
-  Heart,
-  Palette,
-  PanelLeftOpen,
-  Search,
-  Settings,
-  ShieldCheck,
-  Zap,
-} from '@gyeonghokim/lucide-lit';
+import '@gyeonghokim/lucide-lit/icons/camera';
+import '@gyeonghokim/lucide-lit/icons/circle-alert';
+import '@gyeonghokim/lucide-lit/icons/download';
+import '@gyeonghokim/lucide-lit/icons/heart';
+import '@gyeonghokim/lucide-lit/icons/palette';
+import '@gyeonghokim/lucide-lit/icons/panel-left-open';
+import '@gyeonghokim/lucide-lit/icons/search';
+import '@gyeonghokim/lucide-lit/icons/settings';
+import '@gyeonghokim/lucide-lit/icons/shield-check';
+import '@gyeonghokim/lucide-lit/icons/zap';
 import { html, LitElement, type PropertyValues } from 'lit';
 import {
   customElement,
@@ -28,17 +26,6 @@ import {
   type IconId,
 } from './demo-app.constants';
 import { DEMO_APP_STYLES } from './demo-app.styles';
-
-void Camera;
-void CircleAlert;
-void Download;
-void Heart;
-void Palette;
-void PanelLeftOpen;
-void Search;
-void Settings;
-void ShieldCheck;
-void Zap;
 
 @customElement('lucide-lit-demo')
 class LucideLitDemo extends LitElement {
@@ -132,9 +119,7 @@ class LucideLitDemo extends LitElement {
 
   private buildCodeSample(active: (typeof ICONS)[number]): string {
     return `import { html } from 'lit';
-import { ${active.importName} } from '@gyeonghokim/lucide-lit';
-
-void ${active.importName};
+import '@gyeonghokim/lucide-lit/icons/${active.id}';
 
 html\`
   <${active.tag}
