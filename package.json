@@ -1,7 +1,7 @@
 {
   "name": "@gyeonghokim/lucide-lit",
   "description": "A Lucide icon library package for Lit applications.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "ISC",
   "homepage": "https://github.com/GyeongHoKim/lucide-lit",
   "bugs": "https://github.com/GyeongHoKim/lucide-lit/issues",
