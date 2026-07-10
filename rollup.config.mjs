@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import plugins from '@lucide/rollup-plugins';
 import dts from 'rollup-plugin-dts';
 import pkg from './package.json' with { type: 'json' };
@@ -6,6 +8,14 @@ const packageName = 'LucideLit';
 const outputFileName = 'lucide-lit';
 const outputDir = 'dist';
 const inputs = [`src/lucide-lit.ts`];
+
+const iconsSrcDir = 'src/icons';
+const iconInputs = fs.existsSync(iconsSrcDir)
+  ? fs
+      .readdirSync(iconsSrcDir)
+      .filter((f) => f.endsWith('.ts') && f !== 'index.ts')
+      .map((f) => path.join(iconsSrcDir, f))
+  : [];
 const bundles = [
   {
     format: 'cjs',
@@ -77,5 +87,22 @@ export default [
     ],
     plugins: [dts()],
   },
+  ...(iconInputs.length > 0
+    ? [
+        {
+          // rollup-plugin-dts does not honor preserveModulesRoot, so this
+          // writes to a temp dir mirroring the source path; finalize-icon-types.mjs
+          // flattens it into dist/esm/icons/*.d.ts afterwards.
+          input: iconInputs,
+          output: {
+            dir: `${outputDir}/dts-icons-tmp`,
+            format: 'es',
+            preserveModules: true,
+            preserveModulesRoot: iconsSrcDir,
+          },
+          plugins: [dts()],
+        },
+      ]
+    : []),
   ...configs,
 ];

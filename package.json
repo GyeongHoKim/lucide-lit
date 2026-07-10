@@ -33,6 +33,10 @@
       "types": "./dist/lucide-lit.d.ts",
       "import": "./dist/esm/lucide-lit.js",
       "require": "./dist/cjs/lucide-lit.js"
+    },
+    "./icons/*": {
+      "types": "./dist/esm/icons/*.d.ts",
+      "import": "./dist/esm/icons/*.js"
     }
   },
   "typings": "dist/lucide-lit.d.ts",
@@ -48,7 +52,7 @@
     "build": "npm run clean && npm run build:icons && npm run build:bundles",
     "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -rf ./src/icons/index.ts",
     "build:icons": "node scripts/generate-icons.mjs",
-    "build:bundles": "rollup -c ./rollup.config.mjs",
+    "build:bundles": "rollup -c ./rollup.config.mjs && node scripts/finalize-icon-types.mjs",
     "demo:dev": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run dev",
     "demo:build": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run build",
     "demo:preview": "npm --workspace @gyeonghokim/lucide-lit-demo run preview",
@@ -87,5 +91,9 @@
   },
   "peerDependencies": {
     "lit": "^3.0.0"
-  }
+  },
+  "sideEffects": [
+    "./dist/esm/icons/*.js",
+    "./dist/esm/createLucideIcon.js"
+  ]
 }

@@ -46,14 +46,19 @@ async function main() {
   for (const file of iconFiles) {
     const iconName = file.replace(/\.mjs$/, '');
     const componentName = toPascalCase(iconName);
+    // Use the Lucide source slug (already kebab-case) as the filename.
+    // Deriving kebab-case from PascalCase loses information for names
+    // like arrow-down-a-z (→ arrow-down-az), arrow-down-0-1 (→ arrow-down01),
+    // and axis-3d (→ axis3d).
+    const fileName = iconName;
 
     const mod = await import(pathToFileURL(path.join(ICONS_ESM_DIR, file)).href);
     const iconNode = mod.default;
 
     const tsContent = iconFileContent(componentName, iconName, iconNode);
-    fs.writeFileSync(path.join(OUT_DIR, `${componentName}.ts`), tsContent, 'utf-8');
+    fs.writeFileSync(path.join(OUT_DIR, `${fileName}.ts`), tsContent, 'utf-8');
 
-    exports.push(`export { default as ${componentName} } from './${componentName}';`);
+    exports.push(`export { default as ${componentName} } from './${fileName}';`);
   }
 
   fs.writeFileSync(
