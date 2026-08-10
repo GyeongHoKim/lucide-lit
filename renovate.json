@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
+  "mode": "full",
+  "packageRules": [
+    {
+      "description": "Batch routine tooling bumps into a single PR to keep the queue quiet.",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "dev tooling (non-major)"
+    },
+    {
+      "description": "lucide ships the icon data that scripts/generate-icons.mjs reads, so a bump adds or changes icons for consumers. It must land as feat(icons) on its own so semantic-release cuts a minor version.",
+      "matchPackageNames": ["lucide"],
+      "groupName": null,
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "icons",
+      "commitMessageTopic": "lucide icons"
+    }
+  ]
+}
