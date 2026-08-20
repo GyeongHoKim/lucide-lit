@@ -33,13 +33,13 @@ jobs:
       - name: Check
         run: npm run check
 
-      - name: Type check
-        run: |
-          npx tsc --version
-          npm run typecheck
-
       - name: Test
         run: npm test
 
       - name: Build
         run: npm run build
+
+      - name: Type check
+        run: |
+          npx tsc --version
+          npm run typecheck
