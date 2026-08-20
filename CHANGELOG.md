@@ -1,3 +1,18 @@
+# [1.0.0](https://github.com/GyeongHoKim/lucide-lit/compare/v0.4.1...v1.0.0) (2026-08-20)
+
+
+* feat!: ship ESM-only build and drop unfinished alias entrypoints ([baff9fe](https://github.com/GyeongHoKim/lucide-lit/commit/baff9fee256a3b9139e421313e375628a9854cf3))
+* feat!: use the Lucide slug verbatim for custom element tag names ([cfbb682](https://github.com/GyeongHoKim/lucide-lit/commit/cfbb68230b4f9387212ae020ae62375eaaeccd51))
+
+
+### BREAKING CHANGES
+
+* 106 icon tag names change to match their Lucide slug,
+e.g. `<lucide-aarrow-down>` -> `<lucide-a-arrow-down>`,
+`<lucide-arrow-up10>` -> `<lucide-arrow-up-1-0>`, `<lucide-axis3d>` ->
+`<lucide-axis-3d>`. The `LucideProps` type export is removed.
+* the package is ESM-only
+
 ## [0.4.1](https://github.com/GyeongHoKim/lucide-lit/compare/v0.4.0...v0.4.1) (2026-08-20)
 
 
