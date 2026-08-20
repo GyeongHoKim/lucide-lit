@@ -6,7 +6,7 @@
     "emitDeclarationOnly": true,
     "sourceMap": false,
     "rootDir": "src",
-    "outDir": "dist/esm"
+    "outDir": "dist"
   },
   "include": ["src"]
 }

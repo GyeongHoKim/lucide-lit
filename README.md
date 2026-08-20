@@ -28,6 +28,9 @@ bun add @gyeonghokim/lucide-lit lit
 
 `lit` is a peer dependency, so it should be installed by your application.
 
+This package is **ESM-only** (like `lit` itself). Use `import`; there is no
+CommonJS build.
+
 ## Quick start
 
 Import the icons you want to use as **side-effect imports**. Importing the icon
