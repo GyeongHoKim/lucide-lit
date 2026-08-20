@@ -1,6 +1,6 @@
-export * from './aliases/prefixed';
-export { default as createLucideIcon } from './createLucideIcon';
-export { Icon } from './Icon';
-export * from './icons';
-export * as icons from './icons';
-export * from './types';
+export * from './aliases/prefixed.js';
+export { default as createLucideIcon } from './createLucideIcon.js';
+export { Icon } from './Icon.js';
+export * from './icons/index.js';
+export * as icons from './icons/index.js';
+export * from './types.js';

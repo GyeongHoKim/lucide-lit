@@ -18,8 +18,8 @@ const toPascalCase = (str) =>
   str.replace(/(^|[-_])(\w)/g, (_, __, c) => c.toUpperCase());
 
 function iconFileContent(componentName, iconName, iconNode) {
-  return `import createLucideIcon from '../createLucideIcon';
-import type { IconNode } from '../types';
+  return `import createLucideIcon from '../createLucideIcon.js';
+import type { IconNode } from '../types.js';
 
 const iconNode: IconNode = ${JSON.stringify(iconNode)};
 
@@ -58,7 +58,7 @@ async function main() {
     const tsContent = iconFileContent(componentName, iconName, iconNode);
     fs.writeFileSync(path.join(OUT_DIR, `${fileName}.ts`), tsContent, 'utf-8');
 
-    exports.push(`export { default as ${componentName} } from './${fileName}';`);
+    exports.push(`export { default as ${componentName} } from './${fileName}.js';`);
   }
 
   fs.writeFileSync(
