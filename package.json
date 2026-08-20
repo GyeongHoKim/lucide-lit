@@ -22,33 +22,27 @@
     "Font Awesome"
   ],
   "author": "GyeongHoKim",
-  "amdName": "lucide-lit",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "workspaces": [
     "demo"
   ],
-  "main": "dist/cjs/lucide-lit.js",
-  "module": "dist/esm/lucide-lit.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/esm/lucide-lit.d.ts",
-        "default": "./dist/esm/lucide-lit.js"
-      },
-      "require": {
-        "types": "./dist/cjs/lucide-lit.d.ts",
-        "default": "./dist/cjs/lucide-lit.js"
-      }
+      "types": "./dist/lucide-lit.d.ts",
+      "default": "./dist/lucide-lit.js"
     },
     "./createLucideIcon": {
-      "types": "./dist/esm/createLucideIcon.d.ts",
-      "import": "./dist/esm/createLucideIcon.js"
+      "types": "./dist/createLucideIcon.d.ts",
+      "default": "./dist/createLucideIcon.js"
     },
     "./icons/*": {
-      "types": "./dist/esm/icons/*.d.ts",
-      "import": "./dist/esm/icons/*.js"
+      "types": "./dist/icons/*.d.ts",
+      "default": "./dist/icons/*.js"
     }
   },
-  "typings": "dist/esm/lucide-lit.d.ts",
   "files": [
     "dist"
   ],
@@ -58,12 +52,11 @@
   },
   "scripts": {
     "prepare": "husky",
-    "build": "npm run clean && npm run build:icons && npm run build:bundles && npm run build:types && npm run build:pkg",
+    "build": "npm run clean && npm run build:icons && npm run build:bundles && npm run build:types",
     "clean": "rm -rf dist && rm -rf stats && rm -rf ./src/icons/*.ts && rm -rf ./src/icons/index.ts",
     "build:icons": "node scripts/generate-icons.mjs",
     "build:bundles": "rollup -c ./rollup.config.mjs",
-    "build:types": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.json --outDir dist/cjs",
-    "build:pkg": "node scripts/write-dist-package-json.mjs",
+    "build:types": "tsc -p tsconfig.build.json",
     "demo:dev": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run dev",
     "demo:build": "npm run build && npm --workspace @gyeonghokim/lucide-lit-demo run build",
     "demo:preview": "npm --workspace @gyeonghokim/lucide-lit-demo run preview",
@@ -106,7 +99,7 @@
     "lit": "^3.0.0"
   },
   "sideEffects": [
-    "./dist/esm/icons/*.js",
-    "./dist/esm/createLucideIcon.js"
+    "./dist/icons/*.js",
+    "./dist/createLucideIcon.js"
   ]
 }

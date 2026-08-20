@@ -12,7 +12,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const ICONS_ESM_DIR = path.resolve(ROOT, 'node_modules/lucide/dist/esm/icons');
 const OUT_DIR = path.resolve(ROOT, 'src/icons');
-const ALIASES_DIR = path.resolve(ROOT, 'src/aliases');
 
 const toPascalCase = (str) =>
   str.replace(/(^|[-_])(\w)/g, (_, __, c) => c.toUpperCase());
@@ -35,7 +34,6 @@ export default ${componentName};
 
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  fs.mkdirSync(ALIASES_DIR, { recursive: true });
 
   const iconFiles = fs
     .readdirSync(ICONS_ESM_DIR)
@@ -66,15 +64,6 @@ async function main() {
     exports.join('\n') + '\n',
     'utf-8',
   );
-
-  // Stub alias files so entrypoints compile cleanly
-  const aliasStub = '// aliases are not yet generated\nexport {};\n';
-  ['aliases.ts', 'prefixed.ts', 'suffixed.ts'].forEach((f) => {
-    const target = path.join(ALIASES_DIR, f);
-    if (!fs.existsSync(target)) {
-      fs.writeFileSync(target, aliasStub, 'utf-8');
-    }
-  });
 
   console.log(`Generated ${exports.length} icons in src/icons/`);
 }

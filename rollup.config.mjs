@@ -1,51 +1,20 @@
 import plugins from '@lucide/rollup-plugins';
 import pkg from './package.json' with { type: 'json' };
 
-const packageName = 'LucideLit';
-const outputFileName = 'lucide-lit';
-const outputDir = 'dist';
-const inputs = [`src/lucide-lit.ts`];
-
-const bundles = [
-  {
-    format: 'cjs',
-    inputs,
-    outputDir,
-  },
-  {
-    format: 'esm',
-    inputs,
-    outputDir,
-    preserveModules: true,
-  },
-];
-
 const isLitExternal = (id) => id === 'lit' || id.startsWith('lit/');
 
-// Type declarations are emitted separately by `npm run build:types`
-// (tsc --emitDeclarationOnly), so this config only produces JavaScript.
-const configs = bundles
-  .map(({ inputs, outputDir, format, preserveModules }) =>
-    inputs.map((input) => ({
-      input,
-      plugins: plugins({ pkg }),
-      external: isLitExternal,
-      output: {
-        name: packageName,
-        ...(preserveModules
-          ? {
-              dir: `${outputDir}/${format}`,
-            }
-          : {
-              file: `${outputDir}/${format}/${outputFileName}.js`,
-            }),
-        preserveModules,
-        format,
-        sourcemap: true,
-        preserveModulesRoot: 'src',
-      },
-    })),
-  )
-  .flat();
-
-export default configs;
+// ESM-only build. Type declarations are emitted separately by
+// `npm run build:types` (tsc --emitDeclarationOnly), so this config only
+// produces JavaScript.
+export default {
+  input: 'src/lucide-lit.ts',
+  plugins: plugins({ pkg }),
+  external: isLitExternal,
+  output: {
+    dir: 'dist',
+    format: 'esm',
+    preserveModules: true,
+    preserveModulesRoot: 'src',
+    sourcemap: true,
+  },
+};

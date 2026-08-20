@@ -1,4 +1,3 @@
-export * from './aliases/index.js';
 export { default as createLucideIcon } from './createLucideIcon.js';
 export { Icon } from './Icon.js';
 export * from './icons/index.js';

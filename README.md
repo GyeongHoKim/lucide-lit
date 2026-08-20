@@ -28,6 +28,9 @@ bun add @gyeonghokim/lucide-lit lit
 
 `lit` is a peer dependency, so it should be installed by your application.
 
+This package is **ESM-only** (like `lit` itself). Use `import`; there is no
+CommonJS build.
+
 ## Quick start
 
 Import the icons you want to use as **side-effect imports**. Importing the icon
@@ -71,6 +74,12 @@ Lucide icon component names map to kebab-case custom element tags:
 | `Camera` | `<lucide-camera>` |
 | `CircleAlert` | `<lucide-circle-alert>` |
 | `PanelLeftOpen` | `<lucide-panel-left-open>` |
+| `AArrowDown` | `<lucide-a-arrow-down>` |
+| `ArrowUp10` | `<lucide-arrow-up-1-0>` |
+
+The tag name is always `lucide-` followed by the Lucide slug, which is also the
+`./icons/*` import path (`@gyeonghokim/lucide-lit/icons/arrow-up-1-0` registers
+`<lucide-arrow-up-1-0>`).
 
 Browse the available icon names in the Lucide icon directory:
 https://lucide.dev/icons
