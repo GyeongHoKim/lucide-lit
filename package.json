@@ -23,6 +23,9 @@
   ],
   "author": "GyeongHoKim",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "workspaces": [
     "demo"
   ],

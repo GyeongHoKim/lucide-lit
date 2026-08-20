@@ -25,3 +25,25 @@ describe('lucide-lit createLucideIcon', () => {
     assert.strictEqual(normalizeShadowHtml(el.shadowRoot?.innerHTML), expected['back-compat']);
   });
 });
+
+describe('lucide-lit createLucideIcon tag naming', () => {
+  it('keeps the Lucide slug for single-letter segments (a-arrow-down)', async () => {
+    createLucideIcon('a-arrow-down', airVent);
+    assert.isDefined(customElements.get('lucide-a-arrow-down'));
+    assert.isUndefined(customElements.get('lucide-aarrow-down'));
+  });
+
+  it('keeps the Lucide slug for numeric segments (arrow-up-1-0)', async () => {
+    createLucideIcon('arrow-up-1-0', airVent);
+    assert.isDefined(customElements.get('lucide-arrow-up-1-0'));
+    assert.isUndefined(customElements.get('lucide-arrow-up10'));
+  });
+
+  it('emits both the slug class and the PascalCase-derived class', async () => {
+    createLucideIcon('axis-3d', airVent);
+    const el = await fixture<Icon & HTMLElement>(html`<lucide-axis-3d></lucide-axis-3d>`);
+    const svg = el.shadowRoot?.querySelector('svg');
+    assert.isTrue(svg?.classList.contains('lucide-axis-3d'), 'slug class');
+    assert.isTrue(svg?.classList.contains('lucide-axis3d'), 'derived class');
+  });
+});

@@ -74,6 +74,12 @@ Lucide icon component names map to kebab-case custom element tags:
 | `Camera` | `<lucide-camera>` |
 | `CircleAlert` | `<lucide-circle-alert>` |
 | `PanelLeftOpen` | `<lucide-panel-left-open>` |
+| `AArrowDown` | `<lucide-a-arrow-down>` |
+| `ArrowUp10` | `<lucide-arrow-up-1-0>` |
+
+The tag name is always `lucide-` followed by the Lucide slug, which is also the
+`./icons/*` import path (`@gyeonghokim/lucide-lit/icons/arrow-up-1-0` registers
+`<lucide-arrow-up-1-0>`).
 
 Browse the available icon names in the Lucide icon directory:
 https://lucide.dev/icons
