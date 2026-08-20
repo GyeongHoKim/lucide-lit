@@ -1,3 +1,11 @@
+## [0.4.1](https://github.com/GyeongHoKim/lucide-lit/compare/v0.4.0...v0.4.1) (2026-08-20)
+
+
+### Bug Fixes
+
+* **a11y:** align accessibility property types with Lit runtime values ([eccec26](https://github.com/GyeongHoKim/lucide-lit/commit/eccec26be8dd8982de2fa7660067e58596f311d5))
+* **types:** resolve type errors surfaced by TypeScript 7 ([cd9468e](https://github.com/GyeongHoKim/lucide-lit/commit/cd9468e4d636531bbf933f975c793a72908131ea))
+
 # [0.4.0](https://github.com/GyeongHoKim/lucide-lit/compare/v0.3.0...v0.4.0) (2026-08-20)
 
 
