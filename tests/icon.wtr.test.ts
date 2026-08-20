@@ -83,4 +83,24 @@ describe('lucide-lit Icon', () => {
     await elementUpdated(el);
     assert.strictEqual(normalizeShadowHtml(el.shadowRoot?.innerHTML), expected['slotted-span']);
   });
+
+  it('exposes the declared a11y defaults when no attributes are set', async () => {
+    const el = await fixture<Icon>(html`
+      <test-lucide-icon .iconNode=${airVent}></test-lucide-icon>
+    `);
+    assert.strictEqual(el.title, '');
+    assert.strictEqual(el.ariaLabel, null);
+    assert.strictEqual(el.ariaHidden, null);
+    assert.strictEqual(el.role, null);
+  });
+
+  it('restores the default title when the title attribute is removed', async () => {
+    const el = await fixture<Icon>(html`
+      <test-lucide-icon .iconNode=${airVent} title="Air conditioning"></test-lucide-icon>
+    `);
+    assert.strictEqual(el.title, 'Air conditioning');
+    el.removeAttribute('title');
+    await elementUpdated(el);
+    assert.strictEqual(el.title, '');
+  });
 });

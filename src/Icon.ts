@@ -23,7 +23,7 @@ export class Icon extends LitElement {
     className: { type: String, attribute: 'class', reflect: true },
     ariaLabel: { type: String, attribute: 'aria-label' },
     ariaHidden: { type: String, attribute: 'aria-hidden' },
-    title: { type: String, attribute: 'title' },
+    title: { type: String, attribute: 'title', useDefault: true },
     role: { type: String, attribute: 'role' },
   };
 
@@ -55,6 +55,10 @@ export class Icon extends LitElement {
     this.name = '';
     this.size = 24;
     this.className = '';
+    this.ariaLabel = null;
+    this.ariaHidden = null;
+    this.title = '';
+    this.role = null;
   }
 
   private _hasSlottedContent = false;
