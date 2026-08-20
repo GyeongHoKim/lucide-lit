@@ -1,14 +1,14 @@
-import { html, LitElement, nothing, svg } from 'lit';
+import { html, LitElement, nothing, type PropertyValues, svg } from 'lit';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import defaultAttributes from './defaultAttributes';
-import { iconNodeToSvgFragment } from './iconNodeToSvgFragment';
+import defaultAttributes from './defaultAttributes.js';
+import { iconNodeToSvgFragment } from './iconNodeToSvgFragment.js';
 import {
   hasA11yProp,
   mergeClasses,
   toKebabCase,
   toPascalCase,
-} from './shared/index';
-import type { IconNode } from './types';
+} from './shared/index.js';
+import type { IconNode } from './types.js';
 
 export class Icon extends LitElement {
   static shadowRootOptions = { mode: 'open' as const };
@@ -41,13 +41,13 @@ export class Icon extends LitElement {
 
   declare className: string;
 
-  declare ariaLabel: string | undefined;
+  declare ariaLabel: string | null;
 
-  declare ariaHidden: string | undefined;
+  declare ariaHidden: string | null;
 
-  declare title: string | undefined;
+  declare title: string;
 
-  declare role: string | undefined;
+  declare role: string | null;
 
   constructor() {
     super();
@@ -80,8 +80,8 @@ export class Icon extends LitElement {
     }
   }
 
-  override firstUpdated(): void {
-    super.firstUpdated();
+  override firstUpdated(changedProperties: PropertyValues): void {
+    super.firstUpdated(changedProperties);
     queueMicrotask(() => this._refreshSlottedState());
   }
 
@@ -104,8 +104,7 @@ export class Icon extends LitElement {
   render() {
     const width = Number(this.size) || 24;
     const strokeW = Number(
-      this.strokeWidth ??
-        Number((defaultAttributes as Record<string, string>)['stroke-width']),
+      this.strokeWidth ?? Number(defaultAttributes['stroke-width']),
     );
     const calculatedStrokeWidth =
       this.absoluteStrokeWidth === true ? (strokeW * 24) / width : strokeW;
@@ -124,7 +123,7 @@ export class Icon extends LitElement {
     );
 
     const ariaHiddenAttr = (): string | typeof nothing => {
-      if (this.ariaHidden !== undefined) return this.ariaHidden;
+      if (this.ariaHidden != null) return this.ariaHidden;
       if (this._defaultAriaHidden()) return 'true';
       return nothing;
     };

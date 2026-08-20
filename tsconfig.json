@@ -14,10 +14,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "types": ["@testing-library/jest-dom"],
   },
+  "include": ["src", "tests"],
   "exclude": ["**/node_modules"],
 }
