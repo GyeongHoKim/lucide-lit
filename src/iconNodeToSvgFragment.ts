@@ -1,4 +1,4 @@
-import type { IconNode } from './types';
+import type { IconNode } from './types.js';
 
 function escapeAttr(value: string): string {
   return value

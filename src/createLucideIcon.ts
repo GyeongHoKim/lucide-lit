@@ -1,6 +1,6 @@
-import { Icon } from './Icon';
-import { toKebabCase, toPascalCase } from './shared/index';
-import type { IconNode } from './types';
+import { Icon } from './Icon.js';
+import { toKebabCase, toPascalCase } from './shared/index.js';
+import type { IconNode } from './types.js';
 
 /**
  * Create a Lucide icon custom element class and register it as `lucide-${kebabIconName}`.

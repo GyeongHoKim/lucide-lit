@@ -42,6 +42,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Type check
+        run: |
+          npx tsc --version
+          npm run typecheck
+
   release:
     name: Publish release
     runs-on: ubuntu-latest

@@ -178,17 +178,21 @@ import '@gyeonghokim/lucide-lit/icons/camera';
 import '@gyeonghokim/lucide-lit/icons/search';
 ```
 
-If you need to reference the icon class directly (for TypeScript types, or
-to pass it as a value), use a named import from the main entry point:
+If you need to reference the icon class itself — to pass it as a value, for
+example — import the default export of that icon's subpath:
 
 ```ts
-import { Camera, type Camera as CameraType } from '@gyeonghokim/lucide-lit';
+import Camera from '@gyeonghokim/lucide-lit/icons/camera';
 ```
 
-Avoid namespace imports unless you intentionally need to reference many icons
-or are using a bundler that does not support tree-shaking:
+Avoid importing icons from the main entry point. Each icon module registers
+its custom element as a side effect, so bundlers cannot drop the ones you do
+not reference. A named import costs roughly the same as pulling in the entire
+icon set:
 
 ```ts
+// Both of these bundle all 1,700+ icons. Prefer the subpath imports above.
+import { Camera } from '@gyeonghokim/lucide-lit';
 import * as lucideIcons from '@gyeonghokim/lucide-lit';
 ```
 
@@ -198,7 +202,7 @@ Use `createLucideIcon` when you want to register an icon from a Lucide-style
 icon node.
 
 ```ts
-import { createLucideIcon } from '@gyeonghokim/lucide-lit';
+import createLucideIcon from '@gyeonghokim/lucide-lit/createLucideIcon';
 
 export const BrandMark = createLucideIcon('BrandMark', [
   ['path', { d: 'M4 4h16v16H4z' }],
@@ -220,7 +224,6 @@ dynamically in the browser:
 
 ```ts
 if (typeof window !== 'undefined') {
-  const { Camera } = await import('@gyeonghokim/lucide-lit');
-  void Camera;
+  await import('@gyeonghokim/lucide-lit/icons/camera');
 }
 ```
