@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/GyeongHoKim/lucide-lit/compare/v1.0.0...v1.1.0) (2026-08-26)
+
+
+### Features
+
+* **icons:** update lucide icons to v1.34.0 ([0588afb](https://github.com/GyeongHoKim/lucide-lit/commit/0588afb737f7e96954ea9b9333562859bb00b210))
+
 # [1.0.0](https://github.com/GyeongHoKim/lucide-lit/compare/v0.4.1...v1.0.0) (2026-08-20)
 
 
