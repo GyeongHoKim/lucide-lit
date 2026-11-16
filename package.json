@@ -92,7 +92,7 @@
     "lucide": "^1.16.0",
     "playwright": "^1.53.0",
     "rollup": "^4.59.0",
-    "semantic-release": "^25.0.3",
+    "semantic-release": "^26.0.0",
     "typescript": "^7.0.0"
   },
   "peerDependencies": {
